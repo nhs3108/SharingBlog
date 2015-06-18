@@ -1,0 +1,56 @@
+<div id="entry-<%=entry.id%>" class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+    <h4>
+      <b class="text-primary"><%= entry.title %></b>
+      <% if current_user?(entry.user) %>  
+        <span class="dropdown">
+          <button class="btn-link glyphicon glyphicon-wrench dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><%= link_to "Delete" , entry, method: :delete, data: {confirm: "Xóa???"}  %></li>
+            <li><%= link_to "Edit", edit_entry_path(entry)  %></li>
+          </ul>
+        </span>
+      <% end %>
+    </h4> 
+    <span class="glyphicon glyphicon-time">&nbsp;</span>
+    <span class="text-info">Posted <%= time_ago_in_words(entry.created_at) %> ago</span>
+    <span class="text-info pull-right">by <b><%= link_to entry.user.name, entry.user  %></b></span>
+  </div>
+  <div class="panel-body">
+    <div class="panel panel-default" style="border: none;">
+      <div class="panel-body">
+        <%= entry.body %>
+      </div>
+      <div class="panel-footer">
+        <span id="bage_of_<%= entry.id %>" class="badge"><%= pluralize(entry.comments.count, 'comment') %></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- KHUNG HIEN THI BINH LUAN -->
+  
+  <% entry.comments.each do |comment| %>
+    <%= render 'shared/comment', comment: comment %>
+  <% end %>
+  <span id="new_comment_location_<%= entry.id %>"></span>
+  <!-- KHUNG BINH LUAN -->
+  <% if logged_in?  %>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-md-1">
+          <%= image_tag current_user.picture.url,size: "30x30", class: "img-rounded", align: "left", alt: "Avatar"  %>
+        </div>
+        <div class="col-md-11">
+          <%= form_for (@comment = Comment.new), remote: true do |f| %>
+            <div class="field">
+              <%= f.text_field :content, class: "form-control", placeholder: "Write a comment..." %>
+              <%= f.hidden_field :entry_id, value: entry.id %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</div>

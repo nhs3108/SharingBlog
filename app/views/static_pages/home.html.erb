@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-4">
+    <% if logged_in? %>
+      <%= render 'shared/user_info' %>
+      <%= render 'shared/entry_form' %>
+    <% else %>
+      <%= image_tag "ngoctrinh.jpg" ,size: "350x350", alt: "Ngọc Trinh" %>
+    <% end %>
+  </div>
+  <div class="col-md-8" id="feed_list">
+    <%= render 'shared/feed' %>
+  </div>
+</div>

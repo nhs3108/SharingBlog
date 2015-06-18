@@ -1,0 +1,23 @@
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Joined at</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td>
+        <a href="<%= user_path(user) %>">
+        <%= image_tag user.picture.url, size: "30x30" %>
+        <%= user.name %>
+        </a>  
+      </td>
+      <td>
+        <a href="mailto:<%= user.email %>"><%= user.email %></a>
+      </td>
+      <td>
+        <%= user.created_at %>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-6">
+    <%= image_tag current_user.picture.url,size: "150x150", alt: "Avatar" %>
+  <%= render 'shared/stats' %>
+  </div>
+  <div class="rol-md-6">
+    <b><%= link_to current_user.name, current_user %></b>
+  </div>
+</div>

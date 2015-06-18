@@ -1,0 +1,3 @@
+$("form#new_comment #comment_content").val("");
+$("#bage_of_<%= @entry.id %>").html("<%= pluralize(@entry.comments.count, 'comment') %>");
+$("#new_comment_location_<%= @entry.id %>").append("<%= escape_javascript(render('shared/comment', comment: @comment )) %>");

@@ -1,0 +1,5 @@
+
+$("form#new_entry #entry_title").val("");
+$("form#new_entry #entry_body").val("");
+
+$("#new_entry_location").prepend("<%= escape_javascript(render('entries/entry', entry: @entry )) %>");

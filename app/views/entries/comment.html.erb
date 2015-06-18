@@ -1,0 +1,19 @@
+<%= render @entry %>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <%= form_for @comment do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="field">
+        <%= f.label :content %><br>
+        <%= f.text_area :content, class: "form-control" %>
+        <%= f.hidden_field :entry_id, value: @entry.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <br>
+        <%= f.submit "Done", class: "btn btn-primary" %>
+      </div>
+      
+    <% end %>
+  </div>
+  <div class="col-md-4"></div>
+</div>

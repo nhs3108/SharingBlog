@@ -1,0 +1,6 @@
+<li class="list-group-item">
+  <%= image_tag comment.user.picture.url,size: "30x30", class: "img-rounded",
+    align: "left", alt: "Avatar" %>
+    &nbsp <span
+  class="text-info"><b><%= link_to comment.user.name, user_path(comment.user)  %></b></span>&nbsp<%= comment.content %><i class="pull-right text-warning" style="font-size: 11px;"><%= time_ago_in_words(comment.created_at) %> ago</i>
+</li>

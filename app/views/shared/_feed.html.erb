@@ -1,0 +1,8 @@
+
+  <ul class="entries" id="entries">
+    <div id="new_entry_location"></div>
+    <% if @feed_items.any? %>
+      <%= render @feed_items %>
+    <% end %>
+  </ul>
+  <%= will_paginate @feed_items %>

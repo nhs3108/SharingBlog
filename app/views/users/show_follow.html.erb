@@ -1,0 +1,25 @@
+<% provide(:title,@title) %>
+
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag @user.picture.url,size: "150x150" if @user.picture  %>
+        <%= render 'shared/stats' %>
+      </div>
+      <div class="rol-md-6">
+        <b><%= link_to @user.name, @user %></b>
+        <br>
+        <%= render 'follow_form' if logged_in? %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <h1><%= @title %></h1>
+    <%= render 'shared/show_users_list' %>
+  </div>
+</div>
+
+
+
